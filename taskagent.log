@@ -292,3 +292,195 @@ Mon Apr 21 11:01:34 2025 : parsing the tasklist after json replacing:
 }
  
 
+Tue Apr 22 17:30:17 2025 : Generating sub task list for the task: Build a typescrypt website that is a sales page for a fashion house
+Tue Apr 22 17:30:29 2025 : Response from the API: ```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, styling libraries)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, and footer",
+    "Implement responsive styling for the website",
+    "Add interactive elements (e.g., sliders, buttons, forms)",
+    "Integrate any necessary APIs (e.g., payment, inventory)",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service"
+  ]
+}
+```
+Tue Apr 22 17:30:29 2025 : parsing the tasklist before json replacing: 
+
+```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, styling libraries)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, and footer",
+    "Implement responsive styling for the website",
+    "Add interactive elements (e.g., sliders, buttons, forms)",
+    "Integrate any necessary APIs (e.g., payment, inventory)",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service"
+  ]
+}
+```
+Tue Apr 22 17:30:29 2025 : parsing the tasklist after json replacing: 
+
+
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, styling libraries)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, and footer",
+    "Implement responsive styling for the website",
+    "Add interactive elements (e.g., sliders, buttons, forms)",
+    "Integrate any necessary APIs (e.g., payment, inventory)",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service"
+  ]
+}
+ 
+
+Tue Apr 22 17:30:29 2025 : Parsed task lenghtth: 9
+Tue Apr 22 17:30:29 2025 : Parsed task: 0 : Set up a new TypeScript project
+Tue Apr 22 17:30:29 2025 : Parsed task: 1 : Install necessary dependencies (e.g., React, Next.js, styling libraries)
+Tue Apr 22 17:30:29 2025 : Parsed task: 2 : Design the layout of the sales page
+Tue Apr 22 17:30:29 2025 : Parsed task: 3 : Create components for the header, hero section, product showcase, and footer
+Tue Apr 22 17:30:29 2025 : Parsed task: 4 : Implement responsive styling for the website
+Tue Apr 22 17:30:29 2025 : Parsed task: 5 : Add interactive elements (e.g., sliders, buttons, forms)
+Tue Apr 22 17:30:29 2025 : Parsed task: 6 : Integrate any necessary APIs (e.g., payment, inventory)
+Tue Apr 22 17:30:29 2025 : Parsed task: 7 : Test the website on different devices and browsers
+Tue Apr 22 17:30:29 2025 : Parsed task: 8 : Deploy the website to a hosting service
+Tue Apr 22 17:31:00 2025 : Generating sub task list for the task: Build a typescrypt website that is a sales page for a fashion house
+Tue Apr 22 17:31:14 2025 : Response from the API: ```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS, etc.)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, testimonials, and footer",
+    "Implement responsive styling using CSS or a framework like TailwindCSS",
+    "Fetch or mock product data for the fashion house",
+    "Add interactive elements (e.g., carousels, hover effects, etc.)",
+    "Set up routing if multiple pages are needed",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+```
+Tue Apr 22 17:31:14 2025 : parsing the tasklist before json replacing: 
+
+```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS, etc.)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, testimonials, and footer",
+    "Implement responsive styling using CSS or a framework like TailwindCSS",
+    "Fetch or mock product data for the fashion house",
+    "Add interactive elements (e.g., carousels, hover effects, etc.)",
+    "Set up routing if multiple pages are needed",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+```
+Tue Apr 22 17:31:14 2025 : parsing the tasklist after json replacing: 
+
+
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS, etc.)",
+    "Design the layout of the sales page",
+    "Create components for the header, hero section, product showcase, testimonials, and footer",
+    "Implement responsive styling using CSS or a framework like TailwindCSS",
+    "Fetch or mock product data for the fashion house",
+    "Add interactive elements (e.g., carousels, hover effects, etc.)",
+    "Set up routing if multiple pages are needed",
+    "Test the website on different devices and browsers",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+ 
+
+Tue Apr 22 17:31:14 2025 : Parsed task lenghtth: 10
+Tue Apr 22 17:31:14 2025 : Parsed task: 0 : Set up a new TypeScript project
+Tue Apr 22 17:31:14 2025 : Parsed task: 1 : Install necessary dependencies (e.g., React, Next.js, TailwindCSS, etc.)
+Tue Apr 22 17:31:14 2025 : Parsed task: 2 : Design the layout of the sales page
+Tue Apr 22 17:31:14 2025 : Parsed task: 3 : Create components for the header, hero section, product showcase, testimonials, and footer
+Tue Apr 22 17:31:14 2025 : Parsed task: 4 : Implement responsive styling using CSS or a framework like TailwindCSS
+Tue Apr 22 17:31:14 2025 : Parsed task: 5 : Fetch or mock product data for the fashion house
+Tue Apr 22 17:31:14 2025 : Parsed task: 6 : Add interactive elements (e.g., carousels, hover effects, etc.)
+Tue Apr 22 17:31:14 2025 : Parsed task: 7 : Set up routing if multiple pages are needed
+Tue Apr 22 17:31:14 2025 : Parsed task: 8 : Test the website on different devices and browsers
+Tue Apr 22 17:31:14 2025 : Parsed task: 9 : Deploy the website to a hosting service (e.g., Vercel, Netlify)
+Tue Apr 22 17:31:53 2025 : Generating sub task list for the task: Build a typescrypt website that is a sales page for a fashion house
+Tue Apr 22 17:32:06 2025 : Response from the API: ```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS)",
+    "Design the layout of the sales page",
+    "Create components for the header, footer, and navigation",
+    "Implement product display sections with images and descriptions",
+    "Add a shopping cart or checkout functionality",
+    "Integrate payment processing (e.g., Stripe, PayPal)",
+    "Ensure the website is responsive for mobile and desktop",
+    "Test the website for functionality and user experience",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+```
+Tue Apr 22 17:32:06 2025 : parsing the tasklist before json replacing: 
+
+```json
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS)",
+    "Design the layout of the sales page",
+    "Create components for the header, footer, and navigation",
+    "Implement product display sections with images and descriptions",
+    "Add a shopping cart or checkout functionality",
+    "Integrate payment processing (e.g., Stripe, PayPal)",
+    "Ensure the website is responsive for mobile and desktop",
+    "Test the website for functionality and user experience",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+```
+Tue Apr 22 17:32:06 2025 : parsing the tasklist after json replacing: 
+
+
+{
+  "subtasks": [
+    "Set up a new TypeScript project",
+    "Install necessary dependencies (e.g., React, Next.js, TailwindCSS)",
+    "Design the layout of the sales page",
+    "Create components for the header, footer, and navigation",
+    "Implement product display sections with images and descriptions",
+    "Add a shopping cart or checkout functionality",
+    "Integrate payment processing (e.g., Stripe, PayPal)",
+    "Ensure the website is responsive for mobile and desktop",
+    "Test the website for functionality and user experience",
+    "Deploy the website to a hosting service (e.g., Vercel, Netlify)"
+  ]
+}
+ 
+
+Tue Apr 22 17:32:06 2025 : Parsed task lenghtth: 10
+Tue Apr 22 17:32:06 2025 : Parsed task: 0 : Set up a new TypeScript project
+Tue Apr 22 17:32:06 2025 : Parsed task: 1 : Install necessary dependencies (e.g., React, Next.js, TailwindCSS)
+Tue Apr 22 17:32:06 2025 : Parsed task: 2 : Design the layout of the sales page
+Tue Apr 22 17:32:06 2025 : Parsed task: 3 : Create components for the header, footer, and navigation
+Tue Apr 22 17:32:06 2025 : Parsed task: 4 : Implement product display sections with images and descriptions
+Tue Apr 22 17:32:06 2025 : Parsed task: 5 : Add a shopping cart or checkout functionality
+Tue Apr 22 17:32:06 2025 : Parsed task: 6 : Integrate payment processing (e.g., Stripe, PayPal)
+Tue Apr 22 17:32:06 2025 : Parsed task: 7 : Ensure the website is responsive for mobile and desktop
+Tue Apr 22 17:32:06 2025 : Parsed task: 8 : Test the website for functionality and user experience
+Tue Apr 22 17:32:06 2025 : Parsed task: 9 : Deploy the website to a hosting service (e.g., Vercel, Netlify)
+Tue Apr 22 17:33:29 2025 : Generating sub task list for the task: Build a typescrypt website that is a sales page for a fashion house
