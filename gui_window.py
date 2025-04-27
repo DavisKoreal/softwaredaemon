@@ -1,1 +1,0 @@
-import tkinter as tk\n\nroot = tk.Tk()\nroot.title(\"Data Visualization GUI\")\nroot.geometry(\"800x600\")\n\n# Main window code here\nroot.mainloop()
