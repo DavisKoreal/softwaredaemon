@@ -20,9 +20,10 @@ def getTabsBasedOnLevel(n):
 
 def logComputationToFile(logMessage):
     # Logs the message to the log file by appending
-    log_file = os.path.join("..", "taskagent.log")
+    log_file = os.path.join("taskagent.log")
     with open(log_file, 'a', encoding='utf-8') as f:
         f.write(time.asctime() + " : " + logMessage + "\n")
+        print(time.asctime() + " : " + logMessage + "\n")
 
 def getSubTaskList(inputTask="Say Hello"):
     # Generates a list of subtasks for a given task
@@ -31,9 +32,10 @@ def getSubTaskList(inputTask="Say Hello"):
 
     sysRole = """You are a function that takes one task as input. You have access to a terminal with basic commands.
     The definition of an atomic task is a task that can be run by a one-line shell command compatible with both Windows and Linux.
-    If the inputted task can be broken down into modular subtasks, return a JSON with fields "atomic":"false" and "subtasks":"<list of subtasks>".
+    If the inputted task can be broken down into modular subtasks and does not appear in the chat history, return a JSON with fields "atomic":"false" and "subtasks":"<list of subtasks>".
+    If the inputted task can be broken down into modulat tasks and appears to have been mentioned in the chat history, return a JSON with fields "atomic":"true" and "command":"echo `task has already been put in the task tree directly or indirectly`"
     If the inputted task is atomic, return a JSON with fields "atomic":"true" and "command":"<shell command>".
-    Python is installed on the system. Use `{python} <filename>` to run Python scripts, where `{python}` is the Python executable.
+    Python is installed on the system. Use `python <filename>` to run Python scripts.
     For file writing, do not use shell commands; assume Python will handle file operations.
     Always start a programming task by creating a directory using a shell command (`mkdir <directory_name>` on Linux, `md <directory_name>` on Windows).
     You are limited to shell commands that work on both Windows and Linux or Python for system interactions.
@@ -123,6 +125,7 @@ class NaryTree:
 if __name__ == "__main__":
     rootTask = input("What is the task that you want to be computed? ")
     tree = NaryTree(root_task=rootTask)
+    logComputationToFile("Just created the task tree")
     daemon = shellinteractions.ShellInteractions()
     tree.root.fillTreeWithTasks()
 
