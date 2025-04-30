@@ -18,7 +18,7 @@ def logComputationToFile(logMessage):
     # This function logs the message to the log file
     # It takes a log file name and a log message as input
     # and appends the message to the log file.
-
+    print(time.asctime() + " : " + logMessage + "\n")
     with open("../taskagent.log", 'a') as f:
         f.write(time.asctime() + " : " + logMessage + "\n")
         f.close()
@@ -38,11 +38,11 @@ def getSubTaskList(inputTask="Say Hello"):
     The definition of an atomic task as a task that can be run by a one line linux shell command on the terminal.
     If the inputted task can be broken down into a list of modular subtasks, return a json having the following fields "atomic":"false" and "subtasks":"<enter the list of subtasks of the inputted task>". This list should only have the names of subtasks of the inputted task. These names should be a brief description of the task. Break the input into modular tasks.
     If the inputted task is an atomic task, only return the json with the following fields "atomic":"true" and "command":"<enter the linux command to achieve it>".
-    Python is already installed on the system. You can use it to run any python code. If a task needs you to install a software package, return a one line command that installs the package. Do not check if it is in the system or not. Just return the command to install it since it is an atomic task.
-    When you have to write into a file, use the linux command "printf" to write into the file. Do not use any other command to write into a file.
+    If a task needs you to install a software package, return a one line command that installs the package. Do not check if it is in the system or not. Just return the command to install it since it is an atomic task. If it had not been installed before, it will be installed now. If it is already installed, it will be skipped/updated so both scenarios are taken care of.                        
     When trying to run a python file, use the command "python3 <filename>" to run the file. Do not use any other command to run the file.
     Always start a programming task by creating an appropriate directory to store the files. Use the command "mkdir <directory_name>" to create a directory.
     You are limited to linux commands as how you interface with the system.
+    You have an empty repository to work with. Create a directory for the main task and then you can create files or folders inside that directory as need arises
     The following is the chat history: """ + chatHistoryString
 
     response = client.chat.completions.create(
@@ -182,6 +182,5 @@ if __name__ == "__main__":
         shellexecutionresult = daemon.executeCommand(step)
         logComputationToFile("The result of the command: " + shellexecutionresult + " \n")
         terminalExecutionHistory.append({"command": step, "response": shellexecutionresult})
-    
-
-    
+ 
+    print("All tasks have been executed successfully.")

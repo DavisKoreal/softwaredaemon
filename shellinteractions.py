@@ -27,7 +27,7 @@ class ShellInteractions:
     def executeCommand(self, command):
         """Executes a shell command and returns its output"""
         try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            result = subprocess.run(command, shell=True, capture_output=True, text=True, executable="/bin/bash")
             return result.stdout
         except Exception as e:
             raise Exception(f"Error executing command: {str(e)}")
