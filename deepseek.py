@@ -1,11 +1,11 @@
-# Please install OpenAI SDK first: `pip3 install openai`
-# !pip3 install openai
-# %pip install openai
-
+# Please install OpenAI SDK first: `pip install openai`
 from openai import OpenAI
 import json
 import time
 import shellinteractions
+from typing import List
+import os
+import sys
 
 client = OpenAI(api_key="sk-9157cd146a344095baf8e3ef6454117b", base_url="https://api.deepseek.com")
 chatHistory = [{"inputTask": " ", "response": " "}]
@@ -14,6 +14,10 @@ terminalExecutionHistory = [{"command": " ", "response": " "}]
 def getdirectoryHistory():
     print("Getting the directory history")
 
+# a function that takes in a number n and returns a string of n "\t" characters
+def getTabsBasedOnLevel(n):
+    return "\t" * n
+
 def logComputationToFile(logMessage):
     # This function logs the message to the log file
     # It takes a log file name and a log message as input
@@ -21,13 +25,9 @@ def logComputationToFile(logMessage):
     print(time.asctime() + " : " + logMessage + "\n")
     with open("../taskagent.log", 'a') as f:
         f.write(time.asctime() + " : " + logMessage + "\n")
-        f.close()
-
 
 def getSubTaskList(inputTask="Say Hello"):
-    # This function generates a list of sub tasks for a given task
-    # returns a list of tasks if task can be broken down
-    # into subtasks, else returns an empty list.
+    # Generates a list of subtasks for a given task
     logComputationToFile("Generating sub task list for the task: " + inputTask)
     #convert the chatHIstory list to a string
     chatHistoryString = ""
@@ -45,6 +45,9 @@ def getSubTaskList(inputTask="Say Hello"):
     You have an empty repository to work with. Create a directory for the main task and then you can create files or folders inside that directory as need arises
     The following is the chat history: """ + chatHistoryString
 
+    # Replace {python} with the actual Python executable
+    # sysRole = sysRole.format(python=sys.executable)
+
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
@@ -57,119 +60,73 @@ def getSubTaskList(inputTask="Say Hello"):
     chatHistory.append({"inputTask": inputTask, "response": response.choices[0].message.content})
     logComputationToFile("Response from the API: " + response.choices[0].message.content)
     jsonform = json.loads(response.choices[0].message.content.replace("```json", "").replace("```", ""))
-    # logComputationToFile("Parsed JSON: " + str(jsonform))
     return jsonform
 
-
 class Node:
-    def __init__(self, task:str, level = 99999):
-        self.task = task
-        self.parent = False
-        self.leaf = False
-        self.level = level
-        # self.addSubTasks()
-        self.subTasks = []  # List to store any number of subTasks, or in this case, sub tasks
+    def __init__(self, task: str, level: int = 99999) -> None:
+        self.task: str = task
+        self.parent: bool = False
+        self.leaf: bool = False
+        self.level: int = level
+        self.subTasks: List[Node] = []
 
-    def addSubTask(self, subTaskName:str):
+    def addSubTask(self, subTaskName: str):
         """Add a child node with the given task"""
         child_node = Node(subTaskName, level=(self.level + 1))
         self.subTasks.append(child_node)
         self.parent = True
         return child_node
-    
+
     def addListOfSubtasks(self, listofsubtasks):
         logComputationToFile("adding a list of subtasks of the task: " + self.task)
-        if len(listofsubtasks) == 0:
+        if not listofsubtasks:
             return
         for task in listofsubtasks:
             self.subTasks.append(Node(task, level=(self.level + 1)))
-        self.parent=True
+        self.parent = True
 
     def fillTreeWithTasks(self):
-        # logComputationToFile("Filling tree w"/)
-        # get response from deepseek
         response = getSubTaskList(self.task)
-        
+
         if response["atomic"] == "false":
             self.addListOfSubtasks(response["subtasks"])
             logComputationToFile("The task is not atomic, so we need to add the subtasks of the task: " + self.task)
             for childTask in self.subTasks:
                 childTask.fillTreeWithTasks()
-        
-        # if this is an atomic task, then the task is equal to the command line task
+
         if response["atomic"] == "true":
             self.leaf = True
             self.task = response["command"]
 
-
     def __str__(self):
-        """String representation of the node"""
         return str(self.task)
 
 class NaryTree:
-    def __init__(self, root_task=None):
-        self.root = Node(root_task) if root_task is not None else None
+    def __init__(self, root_task=None, startlevel=0):
+        self.root = Node(root_task, level=startlevel) if root_task is not None else None
 
-    # def preorder_traversal(self, node=None):
-    #     """Pre-order traversal: root, then subTasks from left to right"""
-    #     if node is None and self.root is None:
-    #         return []
-        
-    #     if node is None:
-    #         node = self.root
-        
-    #     result = [node.task]
-    #     for child in node.subTasks:
-    #         result.extend(self.preorder_traversal(child))
-    #     return result
-
-    # before visiting a parent node, we need to visit all its subTasks first
     def postorder_traversal(self, node=None):
         """Post-order traversal: subTasks from left to right, then root"""
         if node is None and self.root is None:
             return []
-        
+
         if node is None:
             node = self.root
-        
+
         result = []
-        if node.parent == True:
+        if node.parent:
+            logComputationToFile(getTabsBasedOnLevel(node.level)+"PARENT TASK: " + str(node.task))
             for child in node.subTasks:
+                logComputationToFile(getTabsBasedOnLevel(child.level)+"The task of the child node: " + str(child.task))
                 result.extend(self.postorder_traversal(child))
-        
-        if node.parent == False:
+
+        if not node.parent:
+            logComputationToFile(getTabsBasedOnLevel(node.level)+"LEAF TASK: " + str(node.task))
             result.append(node.task)
 
         return result
 
-
-    # we need level order to visit all nodes and querry deepseek for subtasks of that node
-    # we can use this to get subtasks of a task
-    # we start with the main task, which is the root node, and the main goal of the whole operation
-    # then we get the subtasks of the main task, which are the subTasks of the root node
-    # then we get the subtasks of the level one subtasks, which are the subTasks of the subTasks of the root node
-    # then we get subtasks of the level two subtasks, which are the subTasks of the subTasks of the subTasks of the root node
-    # and so on as long as a node can be broken down into a task, or in another flavour, as long as a node has subTasks
-    # def level_order_traversal(self):
-    #     """Level-order traversal using a queue"""
-    #     if not self.root:
-    #         return []
-        
-    #     result = []
-    #     queue = [self.root]
-        
-    #     while queue:
-    #         current = queue.pop(0)  # Dequeue
-    #         result.append(current.task)
-    #         # Add all subTasks to the queue
-    #         queue.extend(current.subTasks)
-        
-    #     return result
-
-
-# Example usage
 if __name__ == "__main__":
-    # Create a tree
     rootTask = input("What is the task that you want to be computed? ")
     tree = NaryTree(root_task=rootTask)
     daemon = shellinteractions.ShellInteractions()
