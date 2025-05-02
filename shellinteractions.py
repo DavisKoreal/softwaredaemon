@@ -1,5 +1,6 @@
 import os
 import subprocess
+import platform
 
 class ShellInteractions:
     def getCurrentDirectory(self):
@@ -27,8 +28,10 @@ class ShellInteractions:
     def executeCommand(self, command):
         """Executes a shell command and returns its output"""
         try:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            result = subprocess.run(command, shell=True, capture_output=True, text=True, executable="/bin/bash")
             return result.stdout
+        except subprocess.CalledProcessError as e:
+            return e.stderr
         except Exception as e:
             raise Exception(f"Error executing command: {str(e)}")
 
@@ -56,7 +59,7 @@ class ShellInteractions:
     def createDirectory(self, dir_name):
         """Creates a new directory with the specified name"""
         try:
-            os.mkdir(dir_name)
+            os.makedirs(dir_name, exist_ok=True)
             return True
         except Exception as e:
             raise Exception(f"Error creating directory: {str(e)}")
