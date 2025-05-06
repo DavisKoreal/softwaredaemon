@@ -28,7 +28,7 @@ def getTabsBasedOnLevel(n):
 
 def logComputationToFile(logMessage):
     # Logs the message to the log file by appending
-    log_file = os.path.join("..", "taskagent.log")
+    log_file = os.path.join("taskagent.log")
     with open(log_file, 'a', encoding='utf-8') as f:
         f.write(time.asctime() + " : " + logMessage + "\n")
 
