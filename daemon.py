@@ -6,8 +6,16 @@ import shellinteractions
 from typing import List
 import os
 import sys
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+# Set the OpenAI API key and base URL
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")  
+print("The API key is: " + DEEPSEEK_API_KEY)
 
-client = OpenAI(api_key="sk-9157cd146a344095baf8e3ef6454117b", base_url="https://api.deepseek.com")
+# client = OpenAI(api_key="sk-9157cd146a344095baf8e3ef6454117b", base_url="https://api.deepseek.com")
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+
 chatHistory = [{"inputTask": " ", "response": " "}]
 terminalExecutionHistory = [{"command": " ", "response": " "}]
 
@@ -29,14 +37,13 @@ def getSubTaskList(inputTask="Say Hello"):
     logComputationToFile("Generating sub task list for the task: " + inputTask)
     chatHistoryString = "\n".join(str(item) for item in chatHistory)
 
-    sysRole = """You are a function that takes one task as input. You have access to a terminal with basic commands.
+    sysRole = """You are a function that takes one task as input. You only have access to a cli terminal with basic linux commands.
     The definition of an atomic task is a task that can be run by a one-line shell command compatible with both Windows and Linux.
     If the inputted task can be broken down into modular subtasks, return a JSON with fields "atomic":"false" and "subtasks":"<list of subtasks>".
     If the inputted task is atomic, return a JSON with fields "atomic":"true" and "command":"<shell command>".
     Python is installed on the system. Use `{python} <filename>` to run Python scripts, where `{python}` is the Python executable.
-    For file writing, do not use shell commands; assume Python will handle file operations.
-    Always start a programming task by creating a directory using a shell command (`mkdir <directory_name>` on Linux, `md <directory_name>` on Windows).
-    You are limited to shell commands that work on both Windows and Linux or Python for system interactions.
+    For file writing, use shell commands like `echo` or `cat` to create files. For example, to create a file named "test.txt" with the content "Hello World", use: echo "Hello World" > test.txt.
+    Always start a task by creating a directory using a shell command (`mkdir <directory_name>` on Linux, `md <directory_name>` on Windows).
     The following is the chat history: """ + chatHistoryString
 
     # Replace {python} with the actual Python executable
@@ -121,7 +128,15 @@ class NaryTree:
         return result
 
 if __name__ == "__main__":
-    rootTask = input("What is the task that you want to be computed? ")
+    # read from a local file called task.txt
+    with open("task.txt", "r") as file:
+        rootTask = file.read().strip()
+    
+    # output the number of characters in rootTask
+    print("The task is: " + rootTask)
+
+    
+    # rootTask = input("What is the task that you want to be computed? ")
     tree = NaryTree(root_task=rootTask)
     daemon = shellinteractions.ShellInteractions()
     tree.root.fillTreeWithTasks()

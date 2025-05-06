@@ -1,0 +1,1 @@
+13. Target Users\nThe platform serves:  \nSmallholder Farmers: Managing <5 acres, accessing diagnostics via browsers.  \n\nSuppliers: Listing products like fungicides (TEMP_PRODUCT_DATA).  \n\nConsultants: Offering expert advice.  \n\nNGOs/Extension Services: Scaling outreach (110,000+ farmers use similar tools, news.mongabay.com).

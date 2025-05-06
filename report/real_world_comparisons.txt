@@ -1,0 +1,1 @@
+12. Real-World Comparisons\nAgriGuide builds on:  \nPlantVillage Nuru: 93% accurate cassava diagnosis (Axios).  \n\nKuzi: Locust alerts in East Africa (Wikipedia).  \n\nAgriApp: 20% yield boost in India (AgriApp.com).\nAgriGuide’s supplier integration and consultation services set it apart.
