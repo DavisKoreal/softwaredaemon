@@ -1,1 +1,1 @@
-generate a revit plugin that allows users to pick models from the local storage. Have good documentation.
+write a python code that can be injected into fusion 360. The code should be able to design a 3d model of a good looking couch
