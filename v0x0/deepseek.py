@@ -23,7 +23,7 @@ def logComputationToFile(logMessage):
     # It takes a log file name and a log message as input
     # and appends the message to the log file.
     print(time.asctime() + " : " + logMessage + "\n")
-    with open("../taskagent.log", 'a') as f:
+    with open("taskagent.log", 'a') as f:
         f.write(time.asctime() + " : " + logMessage + "\n")
 
 def getSubTaskList(inputTask="Say Hello"):
