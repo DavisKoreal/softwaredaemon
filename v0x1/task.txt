@@ -1,1 +1,1 @@
-write a python code that can be injected into fusion 360. The code should be able to design a 3d model of a good looking couch
+write a python code that can be injected into fusion 360. The code should be able to design a 3d model of a good generator with turbine, to be used in a hydro power station. Break the geenrator into its components. Each component should have a function generating it.

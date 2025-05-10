@@ -1,0 +1,3 @@
+The script already uses Fusion 360's API through the imported 
+modules: adsk.core, adsk.fusion, and adsk.cam. 
+These are the core modules for 3D modeling in Fusion 360's Python API.
