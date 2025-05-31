@@ -1,0 +1,3 @@
+To test the script, open Fusion 360, 
+go to 'Tools' > 'Scripts and Add-Ins', 
+then select the 'generator_components.py' script from the hydro_generator_project directory and run it.

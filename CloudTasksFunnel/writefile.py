@@ -1,0 +1,20 @@
+# a function that takes a string and writes it into a file
+
+def write_to_file(filename, content):
+    """
+    Writes the given content to a file with the specified filename.
+
+    Args:
+        filename (str): The name of the file to write to.
+        content (str): The content to write to the file.
+
+    Returns:
+        None
+    """
+    with open(filename, 'w') as file:
+        file.write(content)
+
+code= """ import adsk.core, adsk.fusion, adsk.cam, traceback\n\ndef create_turbine():\n    try:\n        app = adsk.core.Application.get()\n        design = app.activeProduct\n        rootComp = design.rootComponent\n        sketches = rootComp.sketches\n        xyPlane = rootComp.xYConstructionPlane\n        sketch = sketches.add(xyPlane)\n        circles = sketch.sketchCurves.sketchCircles\n        circles.addByCenterRadius(adsk.core.Point3D.create(0, 0, 0), 5.0)\n        extrudes = rootComp.features.extrudeFeatures\n        prof = sketch.profiles.item(0)\n        extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\n        distance = adsk.core.ValueInput.createByReal(10.0)\n        extInput.setDistanceExtent(False, distance)\n        extrudes.add(extInput)\n    except:\n        print('Failed creating turbine:', traceback.format_exc())\n\ndef create_rotor():\n    try:\n        app = adsk.core.Application.get()\n        design = app.activeProduct\n        rootComp = design.rootComponent\n        sketches = rootComp.sketches\n        xyPlane = rootComp.xYConstructionPlane\n        sketch = sketches.add(xyPlane)\n        circles = sketch.sketchCurves.sketchCircles\n        circles.addByCenterRadius(adsk.core.Point3D.create(0, 0, 0), 3.0)\n        extrudes = rootComp.features.extrudeFeatures\n        prof = sketch.profiles.item(0)\n        extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\n        distance = adsk.core.ValueInput.createByReal(8.0)\n        extInput.setDistanceExtent(False, distance)\n        extrudes.add(extInput)\n    except:\n        print('Failed creating rotor:', traceback.format_exc())\n\ndef create_stator():\n    try:\n        app = adsk.core.Application.get()\n        design = app.activeProduct\n        rootComp = design.rootComponent\n        sketches = rootComp.sketches\n        xyPlane = rootComp.xYConstructionPlane\n        sketch = sketches.add(xyPlane)\n        circles = sketch.sketchCurves.sketchCircles\n        circles.addByCenterRadius(adsk.core.Point3D.create(0, 0, 0), 4.0)\n        extrudes = rootComp.features.extrudeFeatures\n        prof = sketch.profiles.item(0)\n        extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\n        distance = adsk.core.ValueInput.createByReal(6.0)\n        extInput.setDistanceExtent(False, distance)\n        extrudes.add(extInput)\n    except:\n        print('Failed creating stator:', traceback.format_exc())\n\ndef create_housing():\n    try:\n        app = adsk.core.Application.get()\n        design = app.activeProduct\n        rootComp = design.rootComponent\n        sketches = rootComp.sketches\n        xyPlane = rootComp.xYConstructionPlane\n        sketch = sketches.add(xyPlane)\n        circles = sketch.sketchCurves.sketchCircles\n        circles.addByCenterRadius(adsk.core.Point3D.create(0, 0, 0), 6.0)\n        extrudes = rootComp.features.extrudeFeatures\n        prof = sketch.profiles.item(0)\n        extInput = extrudes.createInput(prof, adsk.fusion.FeatureOperations.NewBodyFeatureOperation)\n        distance = adsk.core.ValueInput.createByReal(12.0)\n        extInput.setDistanceExtent(False, distance)\n        extrudes.add(extInput)\n    except:\n        print('Failed creating housing:', traceback.format_exc())\n\n# Main function to create all components\ndef main():\n    create_turbine()\n    create_rotor()\n    create_stator()\n    create_housing()\n\nif __name__ == '__main__':\n    main()
+"""
+
+write_to_file('hydro_generator_project/generator_components.py', code)
