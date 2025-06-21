@@ -137,11 +137,11 @@ if __name__ == "__main__":
 
     
     # rootTask = input("What is the task that you want to be computed? ")
-    tree = NaryTree(root_task=rootTask)
+    taskstree = NaryTree(root_task=rootTask)
     daemon = shellinteractions.ShellInteractions()
-    tree.root.fillTreeWithTasks()
+    taskstree.root.fillTreeWithTasks()
 
-    stepsTaken = tree.postorder_traversal()
+    stepsTaken = taskstree.postorder_traversal()
     print("Currently executing the tasks:")
 
     # This loop should be replaced with a more reactive piece of code 
