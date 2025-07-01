@@ -13,7 +13,6 @@ load_dotenv()
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")  
 print("The API key is: " + DEEPSEEK_API_KEY)
 
-# client = OpenAI(api_key="sk-9157cd146a344095baf8e3ef6454117b", base_url="https://api.deepseek.com")
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
 chatHistory = [{"inputTask": " ", "response": " "}]
