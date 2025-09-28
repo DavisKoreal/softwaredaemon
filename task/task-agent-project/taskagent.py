@@ -1,4 +1,4 @@
-import asyncio
+﻿import asyncio
 import http.server
 import socketserver
 import websockets
@@ -17,7 +17,7 @@ import watchfiles
 load_dotenv()
 
 # Set the OpenAI API key and base URL
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-17f50677df6f47309f393da83e9f734b")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 print("The API key is: " + DEEPSEEK_API_KEY)
 if not DEEPSEEK_API_KEY:
     print("Error: DEEPSEEK_API_KEY not found in .env file")
