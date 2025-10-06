@@ -1,0 +1,1306 @@
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> ls
+
+
+    Directory: C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         9/30/2025   2:11 PM                transistor_simulation_gui_project
+d-----         9/29/2025   2:16 AM                transistor_simulation_project
+d-----         9/30/2025   3:19 PM                ui
+-a----         9/29/2025   1:52 AM             52 .env
+-a----         9/30/2025   2:07 PM             20 requirements.txt
+-a----         9/13/2025   2:27 AM          19469 setUp.ps1
+-a----         9/30/2025   3:05 PM              0 task.txt
+-a----         9/30/2025   3:17 PM          91094 taskagent.log
+-a----         9/29/2025   1:55 AM          11243 taskagent.py
+-a----         9/29/2025   2:04 AM          12935 taskagent0x1.py
+-a----         9/30/2025   3:17 PM          22489 taskagent0x2.py
+-a----         9/30/2025   2:15 PM           2882 test.py
+
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> ls ui
+
+
+    Directory: C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project\ui
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         9/29/2025   1:45 AM                .vite
+d-----         9/30/2025   3:18 PM                node_modules
+d-----         9/30/2025   2:48 PM                src
+-a----         9/13/2025   2:35 AM           1780 index.html
+-a----         9/30/2025   3:18 PM          97211 package-lock.json
+-a----         9/29/2025   1:46 AM            712 package.json
+-a----         9/13/2025   2:35 AM           1150 tailwind.config.js
+-a----         9/10/2025   2:09 PM            524 tsconfig.json
+-a----         9/10/2025   2:09 PM            260 vite.config.ts
+
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> ls ui/src
+
+
+    Directory: C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project\ui\src
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         9/29/2025   1:41 AM          25533 0x0App.tsx
+-a----         9/29/2025   2:14 AM          20250 0x1App.tsx
+-a----         9/30/2025   2:48 PM          21122 0x2App.tsx
+-a----         9/13/2025   2:35 AM           2023 App.css
+-a----         9/10/2025   2:09 PM             62 index.css
+-a----         9/30/2025   3:04 PM            245 main.tsx
+
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> GetContent ui/src/main.tsx
+GetContent : The term 'GetContent' is not recognized as the name of a cmdlet, function, script file, or operable
+program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ GetContent ui/src/main.tsx
++ ~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (GetContent:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> Get-Content ui/src/main.tsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './0x2App'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> Get-Content ui/src/0x2App.tsx
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronRight, Clock, AlertTriangle, CheckCircle, Code, FileText, Server, Play, Square } from 'lucide-react';
+
+interface LogEntryProps {
+  timestamp: string;
+  level: 'info' | 'error' | 'success' | 'warning';
+  message: string;
+  children?: React.ReactNode;
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
+}
+
+// 1. LogEntry Component - Base component for individual log entries
+const LogEntry: React.FC<LogEntryProps> = ({ timestamp, level, message, children, icon: Icon = Clock }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const levelColors = {
+    info: 'text-blue-600 bg-blue-50',
+    error: 'text-red-600 bg-red-50',
+    success: 'text-green-600 bg-green-50',
+    warning: 'text-yellow-600 bg-yellow-50'
+  };
+
+  return (
+    <div className={`border rounded-lg mb-2 ${levelColors[level] || 'text-gray-600 bg-gray-50'}`}>
+      <div
+        className="p-3 flex items-center gap-3 cursor-pointer hover:bg-opacity-80"
+        onClick={() => children && setIsExpanded(!isExpanded)}
+      >
+        <Icon size={16} />
+        <span className="text-sm font-mono text-gray-500 min-w-0 flex-shrink-0">
+          {timestamp}
+        </span>
+        <span className="flex-1 text-sm">{message}</span>
+        {children && (
+          isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />
+        )}
+      </div>
+      {children && isExpanded && (
+        <div className="px-6 pb-3 border-t border-current border-opacity-20">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface Task {
+  name: string;
+  timestamp: string;
+  status: 'completed' | 'error' | 'running' | 'pending';
+  subtasks: string[];
+}
+
+interface TaskTimelineProps {
+  tasks: Task[];
+}
+
+// 2. TaskTimeline Component - Shows task progression and lifecycle
+const TaskTimeline: React.FC<TaskTimelineProps> = ({ tasks }) => {
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">Task Timeline</h3>
+      {tasks.map((task, index) => (
+        <div key={index} className="relative">
+          {/* Timeline line */}
+          {index < tasks.length - 1 && (
+            <div className="absolute left-4 top-8 w-0.5 h-8 bg-gray-300"></div>
+          )}
+
+          <div className="flex items-start gap-3">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold
+              ${task.status === 'completed' ? 'bg-green-500' :
+                task.status === 'error' ? 'bg-red-500' :
+                task.status === 'running' ? 'bg-blue-500' : 'bg-gray-400'}`}>
+              {task.status === 'completed' ? <CheckCircle size={16} /> :
+               task.status === 'error' ? <AlertTriangle size={16} /> :
+               task.status === 'running' ? <Play size={16} /> : <Square size={16} />}
+            </div>
+
+            <div className="flex-1">
+              <div className="bg-white border rounded-lg p-3 shadow-sm">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-medium text-gray-800">{task.name}</h4>
+                  <span className="text-xs text-gray-500">{task.timestamp}</span>
+                </div>
+
+                {task.subtasks && task.subtasks.length > 0 && (
+                  <div className="mt-2">
+                    <div className="text-sm text-gray-600 mb-1">
+                      Subtasks ({task.subtasks.length}):
+                    </div>
+                    <ul className="space-y-1">
+                      {task.subtasks.map((subtask, idx) => (
+                        <li key={idx} className="text-xs text-gray-500 pl-4 border-l-2 border-gray-200">
+                          {subtask}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+interface APIResponseViewerProps {
+  response: string;
+  timestamp: string;
+  isError?: boolean;
+}
+
+// 3. APIResponseViewer Component - Displays formatted API responses with JSON syntax highlighting
+const APIResponseViewer: React.FC<APIResponseViewerProps> = ({ response, timestamp, isError = false }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Simple JSON formatter for display
+  const formatJSON = (jsonString: string) => {
+    try {
+      const parsed = JSON.parse(jsonString);
+      return JSON.stringify(parsed, null, 2);
+    } catch {
+      return jsonString;
+    }
+  };
+
+  return (
+    <div className={`border rounded-lg ${isError ? 'border-red-300 bg-red-50' : 'border-blue-300 bg-blue-50'}`}>
+      <div
+        className="p-3 flex items-center gap-3 cursor-pointer hover:bg-opacity-80"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <Code size={16} className={isError ? 'text-red-600' : 'text-blue-600'} />
+        <span className="text-sm font-mono text-gray-500">{timestamp}</span>
+        <span className={`text-sm font-medium ${isError ? 'text-red-700' : 'text-blue-700'}`}>
+          {isError ? 'API Error' : 'API Response'}
+        </span>
+        {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+      </div>
+
+      {isExpanded && (
+        <div className="px-3 pb-3">
+          <pre className="bg-gray-800 text-green-400 p-3 rounded text-xs overflow-x-auto font-mono">
+            {formatJSON(response)}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface SystemStatusIndicatorProps {
+  status: 'starting' | 'running' | 'shutting_down' | 'stopped' | 'error';
+  timestamp: string;
+  details?: string;
+}
+
+// 4. SystemStatusIndicator Component - Shows server/system status changes
+const SystemStatusIndicator: React.FC<SystemStatusIndicatorProps> = ({ status, timestamp, details }) => {
+  const statusConfig = {
+    starting: { color: 'bg-yellow-500', icon: Play, label: 'Starting' },
+    running: { color: 'bg-green-500', icon: CheckCircle, label: 'Running' },
+    shutting_down: { color: 'bg-orange-500', icon: Square, label: 'Shutting Down' },
+    stopped: { color: 'bg-red-500', icon: AlertTriangle, label: 'Stopped' },
+    error: { color: 'bg-red-600', icon: AlertTriangle, label: 'Error' }
+  };
+
+  const config = statusConfig[status] || statusConfig.stopped;
+  const Icon = config.icon;
+
+  return (
+    <div className="flex items-center gap-3 p-3 bg-white border rounded-lg shadow-sm">
+      <div className={`w-3 h-3 rounded-full ${config.color} animate-pulse`}></div>
+      <Icon size={16} className="text-gray-600" />
+      <div className="flex-1">
+        <div className="flex justify-between items-center">
+          <span className="font-medium text-gray-800">{config.label}</span>
+          <span className="text-sm text-gray-500 font-mono">{timestamp}</span>
+        </div>
+        {details && <div className="text-sm text-gray-600 mt-1">{details}</div>}
+      </div>
+    </div>
+  );
+};
+
+interface CodeGenerationPreviewProps {
+  filename: string;
+  code: string;
+  language?: string;
+  timestamp: string;
+}
+
+// 5. CodeGenerationPreview Component - Shows generated code snippets
+const CodeGenerationPreview: React.FC<CodeGenerationPreviewProps> = ({ filename, code, language = 'cpp', timestamp }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="border border-purple-300 bg-purple-50 rounded-lg">
+      <div
+        className="p-3 flex items-center gap-3 cursor-pointer hover:bg-purple-100"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <FileText size={16} className="text-purple-600" />
+        <span className="font-medium text-purple-800">{filename}</span>
+        <span className="text-sm text-purple-600">({language})</span>
+        <span className="text-sm font-mono text-gray-500 ml-auto">{timestamp}</span>
+        {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+      </div>
+
+      {isExpanded && (
+        <div className="px-3 pb-3">
+          <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+            <code>{code}</code>
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface ErrorAlertProps {
+  error: string;
+  timestamp: string;
+  severity?: 'error' | 'warning';
+}
+
+// 6. ErrorAlert Component - Highlights errors and warnings
+const ErrorAlert: React.FC<ErrorAlertProps> = ({ error, timestamp, severity = 'error' }) => {
+  const severityConfig = {
+    error: { bg: 'bg-red-100', border: 'border-red-400', text: 'text-red-800', icon: AlertTriangle },
+    warning: { bg: 'bg-yellow-100', border: 'border-yellow-400', text: 'text-yellow-800', icon: AlertTriangle }
+  };
+
+  const config = severityConfig[severity];
+  const Icon = config.icon;
+
+  return (
+    <div className={`${config.bg} ${config.border} border-l-4 p-4 rounded-r-lg`}>
+      <div className="flex items-start gap-3">
+        <Icon size={20} className={config.text} />
+        <div className="flex-1">
+          <div className="flex justify-between items-start">
+            <h4 className={`font-medium ${config.text} mb-1`}>
+              {severity === 'error' ? 'Error' : 'Warning'}
+            </h4>
+            <span className="text-sm text-gray-500 font-mono">{timestamp}</span>
+          </div>
+          <p className={`text-sm ${config.text}`}>{error}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface Filters {
+  startDate: string;
+  endDate: string;
+  level: string;
+  search: string;
+}
+
+interface LogFilterControlsProps {
+  filters: Filters;
+  onFilterChange: (key: keyof Filters, value: string) => void;
+}
+
+// 7. LogFilterControls Component - Provides filtering options for logs
+const LogFilterControls: React.FC<LogFilterControlsProps> = ({ filters, onFilterChange }) => {
+  return (
+    <div className="bg-white p-4 border rounded-lg shadow-sm mb-4">
+      <h3 className="text-sm font-medium text-gray-700 mb-3">Filter Logs</h3>
+      <div className="flex flex-wrap gap-4">
+        {/* Date Range */}
+        <div className="flex gap-2">
+          <input
+            type="datetime-local"
+            className="text-xs border rounded px-2 py-1"
+            value={filters.startDate}
+            onChange={(e) => onFilterChange('startDate', e.target.value)}
+          />
+          <span className="text-gray-500 self-center">to</span>
+          <input
+            type="datetime-local"
+            className="text-xs border rounded px-2 py-1"
+            value={filters.endDate}
+            onChange={(e) => onFilterChange('endDate', e.target.value)}
+          />
+        </div>
+
+        {/* Log Level */}
+        <select
+          className="text-xs border rounded px-2 py-1"
+          value={filters.level}
+          onChange={(e) => onFilterChange('level', e.target.value)}
+        >
+          <option value="">All Levels</option>
+          <option value="info">Info</option>
+          <option value="warning">Warning</option>
+          <option value="error">Error</option>
+          <option value="success">Success</option>
+        </select>
+
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search logs..."
+          className="text-xs border rounded px-2 py-1 flex-1 min-w-48"
+          value={filters.search}
+          onChange={(e) => onFilterChange('search', e.target.value)}
+        />
+      </div>
+    </div>
+  );
+};
+
+interface ApiResponse {
+  response: string;
+  timestamp: string;
+}
+
+interface CodePreview {
+  filename: string;
+  code: string;
+  language: string;
+  timestamp: string;
+}
+
+interface ErrorItem {
+  error: string;
+  timestamp: string;
+  severity: 'error' | 'warning';
+}
+
+interface Status {
+  status: 'starting' | 'running' | 'shutting_down' | 'stopped' | 'error';
+  timestamp: string;
+  details: string;
+}
+
+interface LogData {
+  timestamp: string;
+  message: string;
+  level: string;
+}
+
+interface GeneralLog extends LogData {}
+
+// Main App Component - Upgraded with general logs section, improved filtering including dates and levels
+const App: React.FC = () => {
+  const [filters, setFilters] = useState<Filters>({
+    startDate: '',
+    endDate: '',
+    level: '',
+    search: ''
+  });
+
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [apiResponses, setApiResponses] = useState<ApiResponse[]>([]);
+  const [codePreviews, setCodePreviews] = useState<CodePreview[]>([]);
+  const [errors, setErrors] = useState<ErrorItem[]>([]);
+  const [statuses, setStatuses] = useState<Status[]>([]);
+  const [generalLogs, setGeneralLogs] = useState<GeneralLog[]>([]);
+  const [newTask, setNewTask] = useState('');
+
+  const handleFilterChange = (key: keyof Filters, value: string) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmitTask = () => {
+    fetch('http://localhost:8000/task.txt', {
+      method: 'PUT',
+      body: newTask,
+      headers: { 'Content-Type': 'text/plain' }
+    })
+    .then(() => {
+      setNewTask('');
+      // Optionally show success
+    })
+    .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8765');
+
+    ws.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    ws.onmessage = (event) => {
+      const data: LogData = JSON.parse(event.data);
+      processLogData(data);
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket disconnected');
+    };
+
+    return () => ws.close();
+  }, []);
+
+  const processLogData = (data: LogData) => {
+    // Always add to general logs
+    setGeneralLogs(prev => [...prev, data]);
+
+    const { timestamp, message, level } = data;
+
+    if (level === 'task_process' || message.startsWith('Processing new task:')) {
+      const name = message.replace('Processing new task: ', '');
+      setTasks(prev => [...prev, { name, timestamp, status: 'running', subtasks: [] }]);
+    }
+
+    if (level === 'api_response' || message.startsWith('Response from the API:')) {
+      const response = message.replace('Response from the API: ', '');
+      setApiResponses(prev => [...prev, { response, timestamp }]);
+
+      try {
+        const respJson = JSON.parse(response);
+        if (respJson.atomic === 'false') {
+          setTasks(prev => {
+            if (prev.length === 0) return prev;
+            const newTasks = [...prev];
+            newTasks[newTasks.length - 1].subtasks = respJson.subtasks;
+            return newTasks;
+          });
+        } else if (respJson.atomic === 'true') {
+          const cmd = respJson.command;
+          // Extract from python -c "with open('filename', 'w'...) as f: f.write('''code''')"
+          const match = cmd.match(/open\(['"]([^'"]+)['"], 'w'[^)]*\) as f: f\.write\(\'''([\s\S]*?)'''\)/);
+          if (match) {
+            const filename = match[1];
+            const code = match[2];
+            const language = filename.split('.').pop();
+            setCodePreviews(prev => [...prev, { filename, code, language, timestamp }]);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to parse API response:', e);
+      }
+    }
+
+    if (level === 'error' || message.includes('error')) {
+      setErrors(prev => [...prev, { error: message, timestamp, severity: 'error' }]);
+      // If related to task, update task status to error
+      if (tasks.length > 0) {
+        setTasks(prev => {
+          const newTasks = [...prev];
+          newTasks[newTasks.length - 1].status = 'error';
+          return newTasks;
+        });
+      }
+    }
+
+    if (level === 'system_start' || message === 'Starting task.txt file monitoring') {
+      setStatuses(prev => [...prev, { status: 'starting', timestamp, details: message }]);
+    } else if (level === 'system_shutdown' || message === 'Shutting down server') {
+      setStatuses(prev => [...prev, { status: 'shutting_down', timestamp, details: message }]);
+    } else if (message.includes('HTTP server error')) {
+      setStatuses(prev => [...prev, { status: 'error', timestamp, details: message }]);
+    } else if (level === 'command_result' && message.includes('The result of the command')) {
+      // Optionally update task to completed if no error
+      if (!message.includes('Error') && tasks.length > 0) {
+        setTasks(prev => {
+          const newTasks = [...prev];
+          newTasks[newTasks.length - 1].status = 'completed';
+          return newTasks;
+        });
+      }
+    }
+  };
+
+  // Filter functions with date and level support
+  const filterItems = <T extends { timestamp: string }>(items: T[], checkLevel?: (item: T) => string) => {
+    return items.filter(item => {
+      const itemDate = new Date(item.timestamp);
+      if (filters.startDate && itemDate < new Date(filters.startDate)) return false;
+      if (filters.endDate && itemDate > new Date(filters.endDate)) return false;
+      if (filters.level && checkLevel && checkLevel(item) !== filters.level) return false;
+      if (filters.search && !JSON.stringify(item).toLowerCase().includes(filters.search.toLowerCase())) return false;
+      return true;
+    });
+  };
+
+  const filteredTasks = filterItems(tasks);
+  const filteredApiResponses = filterItems(apiResponses);
+  const filteredCodePreviews = filterItems(codePreviews);
+  const filteredErrors = filterItems(errors, item => item.severity);
+  const filteredStatuses = filterItems(statuses, item => item.status === 'error' ? 'error' : 'info');
+  const filteredGeneralLogs = filterItems(generalLogs, item => item.level);
+
+  return (
+    <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Task Agent Dashboard (Upgraded)</h1>
+
+      {/* Task Submission */}
+      <div className="bg-white p-4 border rounded-lg shadow-sm mb-4">
+        <h3 className="text-sm font-medium text-gray-700 mb-3">Submit New Task</h3>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Enter task (e.g., simulate a transistor using c++)"
+            className="flex-1 border rounded px-3 py-2"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+          />
+          <button
+            onClick={handleSubmitTask}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+      {/* Filter Controls */}
+      <LogFilterControls filters={filters} onFilterChange={handleFilterChange} />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Left Column */}
+        <div className="space-y-6">
+          {/* Task Timeline */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <TaskTimeline tasks={filteredTasks} />
+          </div>
+
+          {/* System Status */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-800">System Status</h3>
+            {filteredStatuses.map((status, idx) => (
+              <SystemStatusIndicator key={idx} {...status} />
+            ))}
+          </div>
+
+          {/* General Logs - New section for all logs */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-800">All Logs</h3>
+            <div className="max-h-96 overflow-y-auto border rounded-lg p-2 bg-white">
+              {filteredGeneralLogs.map((log, idx) => (
+                <LogEntry key={idx} timestamp={log.timestamp} level={log.level as any} message={log.message} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="space-y-6">
+          {/* API Responses */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-800">API Responses</h3>
+            {filteredApiResponses.map((resp, idx) => (
+              <APIResponseViewer key={idx} {...resp} />
+            ))}
+          </div>
+
+          {/* Code Generation */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-800">Generated Code</h3>
+            {filteredCodePreviews.map((preview, idx) => (
+              <CodeGenerationPreview key={idx} {...preview} />
+            ))}
+          </div>
+
+          {/* Errors */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-800">Errors & Warnings</h3>
+            {filteredErrors.map((err, idx) => (
+              <ErrorAlert key={idx} {...err} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> ls ui/src
+
+
+    Directory: C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project\ui\src
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         9/29/2025   1:41 AM          25533 0x0App.tsx
+-a----         9/29/2025   2:14 AM          20250 0x1App.tsx
+-a----         9/30/2025   2:48 PM          21122 0x2App.tsx
+-a----         9/13/2025   2:35 AM           2023 App.css
+-a----         9/10/2025   2:09 PM             62 index.css
+-a----         9/30/2025   3:04 PM            245 main.tsx
+
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> Get-Content ui/src/App.css
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f8fafc;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth animations */
+* {
+  transition: all 0.2s ease;
+}
+
+/* Pulse animation for connection status */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gradient text effect */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Focus styles */
+textarea:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Button animations */
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* Log entry animations */
+.log-entry {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Loading spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> Get-Content ui/src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> ls
+
+
+    Directory: C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         9/30/2025   2:11 PM                transistor_simulation_gui_project
+d-----         9/29/2025   2:16 AM                transistor_simulation_project
+d-----         9/30/2025   3:19 PM                ui
+-a----         9/29/2025   1:52 AM             52 .env
+-a----         9/30/2025   2:07 PM             20 requirements.txt
+-a----         9/13/2025   2:27 AM          19469 setUp.ps1
+-a----         9/30/2025   3:05 PM              0 task.txt
+-a----         9/30/2025   3:17 PM          91094 taskagent.log
+-a----         9/29/2025   1:55 AM          11243 taskagent.py
+-a----         9/29/2025   2:04 AM          12935 taskagent0x1.py
+-a----         9/30/2025   3:17 PM          22489 taskagent0x2.py
+-a----         9/30/2025   2:15 PM           2882 test.py
+
+
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project> Get-Content taskagent0x2.py
+import asyncio
+import http.server
+import socketserver
+import websockets
+import json
+import time
+import os
+import sys
+import subprocess
+from typing import List
+from openai import OpenAI
+from dotenv import load_dotenv
+import threading
+import watchfiles
+import re
+import logging
+import aiofiles
+import datetime
+import uuid
+import jsonschema
+
+# Load environment variables from .env file
+load_dotenv(dotenv_path=".env")
+
+# Set the OpenAI API key and base URL
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+if not DEEPSEEK_API_KEY:
+    print("Error: DEEPSEEK_API_KEY not found in .env file")
+    sys.exit(1)
+
+# Get ports from env vars for configurability
+HTTP_PORT = int(os.getenv("HTTP_PORT", 8000))
+WS_PORT = int(os.getenv("WS_PORT", 8765))
+
+# Setup logging with basicConfig
+logging.basicConfig(
+    filename='taskagent.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+# Define JSON schema for API response validation
+SUBTASK_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "atomic": {"type": "string", "enum": ["true", "false"]},
+    },
+    "required": ["atomic"],
+    "oneOf": [
+        {
+            "properties": {
+                "atomic": {"const": "true"},
+                "command": {"type": "string"}
+            },
+            "required": ["command"]
+        },
+        {
+            "properties": {
+                "atomic": {"const": "false"},
+                "subtasks": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["subtasks"]
+        }
+    ]
+}
+
+class TaskAgent:
+    def __init__(self):
+        """Initialize the TaskAgent with global state encapsulated."""
+        self.chat_history = [{"inputTask": " ", "response": " "}]
+        self.terminal_history = [{"command": " ", "response": " "}]
+        self.connected_clients = set()
+        self.loop = asyncio.get_event_loop()
+        self.client_rate_limits = {}  # For rate limiting: {client_id: (last_time, count)}
+        self.client_ids = {}  # {websocket: client_id}
+        self.client_messages = {}  # For simple rate limiting: {client_id: [timestamps]}
+        self.rate_limit_window = 60  # seconds
+        self.rate_limit_max = 10  # messages per window
+
+        self.client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+
+    def get_directory_history(self):
+        """Placeholder for getting directory history."""
+        self.log("Getting the directory history")
+
+    def log(self, message, level="info"):
+        logging.log(getattr(logging, level.upper()), message)
+        timestamp = datetime.datetime.now().isoformat()
+        log_json = json.dumps({"timestamp": timestamp, "message": message, "level": level.lower()})
+        if self.connected_clients and self.loop and self.loop.is_running():
+            asyncio.run_coroutine_threadsafe(self.broadcast_log_async(log_json), self.loop)
+
+    def log_error(self, message):
+        self.log(message, level="error")
+
+    def log_warning(self, message):
+        self.log(message, level="warning")
+
+    async def broadcast_log_async(self, log_json):
+        """Broadcast log JSON to all connected clients."""
+        if self.connected_clients:
+            await asyncio.gather(*(client.send(log_json) for client in self.connected_clients))
+
+    async def send_to_client(self, websocket, data):
+        """Send data to a specific client."""
+        await websocket.send(json.dumps(data))
+
+    def get_sub_task_list(self, input_task="Say Hello"):
+        """Generate subtask list using API."""
+        self.log(f"Generating sub task list for the task: {input_task}")
+        chat_history_string = "\n".join(str(item) for item in self.chat_history)
+
+        sys_role = """You are a function that takes one task as input. You only have access to a cli terminal with Windows cmd commands.
+        The definition of an atomic task is a task that can be run by a one-line shell command compatible with Windows cmd.
+        If the inputted task can be broken down into modular subtasks, return a JSON with fields "atomic":"false" and "subtasks":"<list of subtasks>".
+        If the inputted task is atomic, return a JSON with fields "atomic":"true" and "command":"<shell command>".
+        Python is installed on the system. Use python <filename> to run Python scripts, where python is the Python executable.
+        For writing files with complex content like code, ALWAYS use python -c to execute a small script that writes the file, using triple single quotes for multiline strings to avoid escaping issues.
+        Example for file writing: python -c "with open('file.cpp', 'w', encoding='utf-8') as f: f.write('''#include <iostream>\nint main() { return 0; }''')"
+        Always start a task by creating a directory using a shell command (md <directory_name> on Windows).
+        The following is the chat history: """ + chat_history_string
+
+        try:
+            response = self.client.chat.completions.create(
+                model="deepseek-chat",
+                messages=[
+                    {"role": "system", "content": sys_role},
+                    {"role": "user", "content": "The input task is :" + input_task},
+                ],
+                stream=False
+            )
+            response_content = response.choices[0].message.content
+            self.log(f"Response from the API: {response_content}")
+        except Exception as e:
+            self.log_error(f"API call error: {str(e)}")
+            raise
+
+        self.chat_history.append({"inputTask": input_task, "response": response_content})
+
+        # Clean the response to extract valid JSON
+        response_content = response_content.replace("```json", "").replace("```", "").replace("json", "").strip()
+
+        # Use regex to find the JSON object in case of extra text
+        json_match = re.search(r'\{[\s\S]*\}', response_content)
+        if json_match:
+            response_content = json_match.group(0)
+
+        try:
+            json_form = json.loads(response_content)
+            # Validate with jsonschema
+            jsonschema.validate(instance=json_form, schema=SUBTASK_SCHEMA)
+        except json.JSONDecodeError as e:
+            self.log_error(f"JSON parsing error: {str(e)}")
+            raise ValueError(f"Failed to parse API response as JSON: {response_content}")
+        except jsonschema.exceptions.ValidationError as e:
+            self.log_error(f"JSON schema validation error: {str(e)}")
+            raise ValueError(f"API response does not match expected schema: {response_content}")
+
+        return json_form
+
+class Node:
+    def __init__(self, task: str, level: int = 99999) -> None:
+        """Node for task tree."""
+        self.task: str = task
+        self.parent: bool = False
+        self.leaf: bool = False
+        self.level: int = level
+        self.sub_tasks: List[Node] = []
+
+    def add_sub_task(self, sub_task_name: str):
+        """Add a subtask node."""
+        child_node = Node(sub_task_name, level=(self.level + 1))
+        self.sub_tasks.append(child_node)
+        self.parent = True
+        return child_node
+
+    def add_list_of_subtasks(self, list_of_subtasks):
+        """Add list of subtasks."""
+        self.log(f"adding a list of subtasks of the task: {self.task}")
+        if not list_of_subtasks:
+            return
+        for task in list_of_subtasks:
+            self.sub_tasks.append(Node(task, level=(self.level + 1)))
+        self.parent = True
+
+    def fill_tree_with_tasks(self, agent: TaskAgent):
+        """Fill tree with subtasks recursively."""
+        response = agent.get_sub_task_list(self.task)
+        if response["atomic"] == "false":
+            self.add_list_of_subtasks(response["subtasks"])
+            self.log(f"The task is not atomic, so we need to add the subtasks of the task: {self.task}")
+            for child_task in self.sub_tasks:
+                child_task.fill_tree_with_tasks(agent)
+        if response["atomic"] == "true":
+            self.leaf = True
+            self.task = response["command"]
+
+    def __str__(self):
+        return str(self.task)
+
+class NaryTree:
+    def __init__(self, root_task=None, start_level=0):
+        """N-ary tree for tasks."""
+        self.root = Node(root_task, level=start_level) if root_task is not None else None
+
+    def get_tabs_based_on_level(self, n):
+        return "\t" * n
+
+    def postorder_traversal(self, node=None):
+        """Postorder traversal of tree."""
+        if node is None and self.root is None:
+            return []
+        if node is None:
+            node = self.root
+        result = []
+        if node.parent:
+            self.log(f"{self.get_tabs_based_on_level(node.level)}PARENT TASK: {str(node.task)}")
+            for child in node.sub_tasks:
+                self.log(f"{self.get_tabs_based_on_level(child.level)}The task of the child node: {str(child.task)}")
+                result.extend(self.postorder_traversal(child))
+        if not node.parent:
+            self.log(f"{self.get_tabs_based_on_level(node.level)}LEAF TASK: {str(node.task)}")
+            result.append(node.task)
+        return result
+
+# HTTP Server to serve the log file, UI, and handle UI logs
+class CustomHandler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, agent=None, **kwargs):
+        self.agent = agent
+        super().__init__(*args, **kwargs)
+
+    def do_PUT(self):
+        request_id = str(uuid.uuid4())
+        timestamp = datetime.datetime.now().isoformat()
+        self.agent.log(f"[{timestamp}] [Request {request_id}] PUT request received on {self.path}")
+
+        if self.path == '/task.txt':
+            content_length = int(self.headers['Content-Length'])
+            content = self.rfile.read(content_length).decode('utf-8')
+            with open('task.txt', 'w', encoding='utf-8') as f:
+                f.write(content)
+            self.send_response(200)
+            self.end_headers()
+            response_timestamp = datetime.datetime.now().isoformat()
+            self.agent.log(f"[{response_timestamp}] [Request {request_id}] Received task via PUT: {content}")
+        else:
+            self.send_response(404)
+            self.end_headers()
+            response_timestamp = datetime.datetime.now().isoformat()
+            self.agent.log(f"[{response_timestamp}] [Request {request_id}] 404 response sent")
+
+    def do_POST(self):
+        request_id = str(uuid.uuid4())
+        timestamp = datetime.datetime.now().isoformat()
+        self.agent.log(f"[{timestamp}] [Request {request_id}] POST request received on {self.path}")
+
+        if self.path == '/log-ui':
+            content_length = int(self.headers['Content-Length'])
+            content = self.rfile.read(content_length).decode('utf-8')
+            with open('ui.log', 'a', encoding='utf-8') as f:
+                f.write(content)
+            self.send_response(200)
+            self.end_headers()
+            response_timestamp = datetime.datetime.now().isoformat()
+            self.agent.log(f"[{response_timestamp}] [Request {request_id}] UI log received: {content.strip()}")
+        else:
+            self.send_response(404)
+            self.end_headers()
+            response_timestamp = datetime.datetime.now().isoformat()
+            self.agent.log(f"[{response_timestamp}] [Request {request_id}] 404 response sent")
+
+class MyTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
+# Start the HTTP server in a separate thread
+def start_http_server(agent):
+    """Start HTTP server."""
+    Handler = lambda *args, **kwargs: CustomHandler(*args, agent=agent, **kwargs)
+    try:
+        with MyTCPServer(("127.0.0.1", HTTP_PORT), Handler) as httpd:
+            print(f"Serving HTTP on 127.0.0.1 port {HTTP_PORT}")
+            httpd.serve_forever()
+    except Exception as e:
+        print(f"HTTP server error: {str(e)}")
+
+# WebSocket server setup
+async def websocket_handler(websocket, path, agent: TaskAgent):
+    client_id = str(uuid.uuid4())
+    agent.client_ids[websocket] = client_id
+    agent.client_messages[client_id] = []
+    timestamp = datetime.datetime.now().isoformat()
+    print(f"[{timestamp}] [Client {client_id}] New WebSocket connection on path: {path}")
+    agent.connected_clients.add(websocket)
+
+    # Send existing logs as JSON
+    try:
+        async with aiofiles.open('taskagent.log', 'r', encoding='utf-8') as f:
+            lines = await f.readlines()
+        for line in lines:
+            if line.strip():
+                timestamp, level, message = line.strip().split(' - ', 2)
+                log_json = json.dumps({"timestamp": timestamp, "message": message, "level": level.lower()})
+                send_timestamp = datetime.datetime.now().isoformat()
+                await agent.send_to_client(websocket, json.loads(log_json))
+                print(f"[{send_timestamp}] [Client {client_id}] Sent existing log: {log_json}")
+    except Exception as e:
+        timestamp = datetime.datetime.now().isoformat()
+        print(f"[{timestamp}] [Client {client_id}] Error sending existing logs: {str(e)}")
+
+    try:
+        async for message in websocket:
+            recv_timestamp = datetime.datetime.now().isoformat()
+            print(f"[{recv_timestamp}] [Client {client_id}] Received: {message}")
+
+            # Rate limiting
+            now = time.time()
+            agent.client_messages[client_id] = [t for t in agent.client_messages[client_id] if now - t < agent.rate_limit_window]
+            if len(agent.client_messages[client_id]) >= agent.rate_limit_max:
+                error_data = {"error": "Rate limit exceeded"}
+                await agent.send_to_client(websocket, error_data)
+                send_timestamp = datetime.datetime.now().isoformat()
+                logging.warning(f"[{send_timestamp}] [Client {client_id}] Rate limit exceeded, sent error")
+                continue
+            agent.client_messages[client_id].append(now)
+
+            try:
+                data = json.loads(message)
+                action = data.get('action')
+
+                if action == 'submit_task':
+                    task = data.get('task')
+                    if task:
+                        await asyncio.shield(agent.process_task(task))
+                        response_data = {"response": "task_submitted", "task": task}
+                        await agent.send_to_client(websocket, response_data)
+                        send_timestamp = datetime.datetime.now().isoformat()
+                        print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(response_data)}")
+                    else:
+                        error_data = {"error": "Missing task field"}
+                        await agent.send_to_client(websocket, error_data)
+                        send_timestamp = datetime.datetime.now().isoformat()
+                        print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(error_data)}")
+
+                elif action == 'get_history':
+                    hist_type = data.get('type')
+                    if hist_type == 'chat':
+                        response_data = {"response": "history", "type": "chat", "data": agent.chat_history}
+                        await agent.send_to_client(websocket, response_data)
+                        send_timestamp = datetime.datetime.now().isoformat()
+                        print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(response_data)}")
+                    elif hist_type == 'terminal':
+                        response_data = {"response": "history", "type": "terminal", "data": agent.terminal_history}
+                        await agent.send_to_client(websocket, response_data)
+                        send_timestamp = datetime.datetime.now().isoformat()
+                        print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(response_data)}")
+                    else:
+                        error_data = {"error": "Invalid history type"}
+                        await agent.send_to_client(websocket, error_data)
+                        send_timestamp = datetime.datetime.now().isoformat()
+                        print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(error_data)}")
+
+                else:
+                    error_data = {"error": "Unknown action"}
+                    await agent.send_to_client(websocket, error_data)
+                    send_timestamp = datetime.datetime.now().isoformat()
+                    print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(error_data)}")
+            except json.JSONDecodeError:
+                error_data = {"error": "Invalid JSON"}
+                await agent.send_to_client(websocket, error_data)
+                send_timestamp = datetime.datetime.now().isoformat()
+                print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(error_data)}")
+            except Exception as e:
+                print(f"Error handling message: {str(e)}")
+                error_data = {"error": "Server error"}
+                await agent.send_to_client(websocket, error_data)
+                send_timestamp = datetime.datetime.now().isoformat()
+                print(f"[{send_timestamp}] [Client {client_id}] Sent: {json.dumps(error_data)}")
+    except Exception as e:
+        timestamp = datetime.datetime.now().isoformat()
+        print(f"[{timestamp}] [Client {client_id}] WebSocket error: {str(e)}")
+    finally:
+        agent.connected_clients.remove(websocket)
+        client_id = agent.client_ids.pop(websocket, None)
+        agent.client_messages.pop(client_id, None)
+        timestamp = datetime.datetime.now().isoformat()
+        close_code = websocket.close_code
+        close_reason = websocket.close_reason
+        print(f"[{timestamp}] [Client {client_id}] WebSocket connection closed - Code: {close_code}, Reason: {close_reason}")
+
+# # Start the WebSocket server
+# async def start_websocket_server(agent):
+#     async with websockets.serve(lambda ws, path: websocket_handler(ws, path, agent), "127.0.0.1", WS_PORT):
+#         print(f"WebSocket server running on ws://127.0.0.1:{WS_PORT}")
+#         await asyncio.Future()  # Run forever
+async def start_websocket_server(agent, port=WS_PORT):
+    while True:
+        try:
+            async with websockets.serve(
+                lambda ws, path: websocket_handler(ws, path, agent),
+                "127.0.0.1", port
+            ):
+                print(f"WebSocket server running on ws://127.0.0.1:{port}")
+                await asyncio.Future()  # Run forever
+        except OSError as e:
+            if e.errno == 10048:  # Address in use
+                print(f"Port {port} in use, trying {port+1}")
+                port += 1
+            else:
+                raise
+
+
+# Process task from task.txt
+async def process_task(self, task):
+    """Process a given task."""
+    if task.strip():
+        self.log(f"Processing new task: {task}")
+        tree = NaryTree(root_task=task)
+        tree.root.fill_tree_with_tasks(self)
+        steps_taken = tree.postorder_traversal()
+        self.log("Currently executing the tasks:")
+        for step in steps_taken:
+            self.log(f"Executing the command: {step}")
+            try:
+                result = subprocess.run(step, shell=True, capture_output=True, text=True)
+                shell_execution_result = result.stdout or result.stderr
+            except subprocess.SubprocessError as e:
+                shell_execution_result = f"Error executing command: {str(e)}"
+                self.log_error(shell_execution_result)
+            self.log(f"The result of the command: {shell_execution_result}")
+            self.terminal_history.append({"command": step, "response": shell_execution_result})
+
+TaskAgent.process_task = process_task  # Add to class
+
+# Monitor task.txt for changes
+async def monitor_task_file(agent):
+    """Monitor task.txt for changes async."""
+    print("Starting task.txt file monitoring")
+    async for changes in watchfiles.awatch('task.txt'):
+        for change in changes:
+            if change[0] == watchfiles.Change.modified or change[0] == watchfiles.Change.added:
+                try:
+                    async with aiofiles.open("task.txt", "r", encoding='utf-8') as file:
+                        root_task = (await file.read()).strip()
+                    print(f"Detected change in task.txt: {root_task}")
+                    await asyncio.shield(agent.process_task(root_task))
+                except Exception as e:
+                    print(f"Error reading task.txt: {str(e)}")
+
+# Main execution
+if __name__ == "__main__":
+    async def main():
+        agent = TaskAgent()
+
+        # Start HTTP server in a background thread
+        http_thread = threading.Thread(target=start_http_server, args=(agent,), daemon=True)
+        http_thread.start()
+
+        # Start WebSocket server and task monitoring
+        tasks = [
+            start_websocket_server(agent),
+            monitor_task_file(agent)
+        ]
+        try:
+            # Initialize task.txt if it doesn't exist
+            if not os.path.exists("task.txt"):
+                print("Creating empty task.txt")
+                with open("task.txt", "w", encoding='utf-8') as file:
+                    file.write("")
+            # Run initial task if present
+            async with aiofiles.open("task.txt", "r", encoding='utf-8') as file:
+                root_task = (await file.read()).strip()
+            if root_task:
+                await agent.process_task(root_task)
+            # Run WebSocket server and file monitoring
+            await asyncio.gather(*tasks)
+        except KeyboardInterrupt:
+            print("Shutting down server")
+            # Cancel all running tasks
+            for task in asyncio.all_tasks():
+                task.cancel()
+            await agent.loop.shutdown_asyncgens()
+            agent.loop.close()
+            print("Event loop closed")
+
+    asyncio.run(main())
+PS C:\Users\Administrator\Desktop\softwaredaemon\task\task-agent-project>

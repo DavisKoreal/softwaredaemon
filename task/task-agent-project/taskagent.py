@@ -14,11 +14,11 @@ import threading
 import watchfiles
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 
 # Set the OpenAI API key and base URL
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-print("The API key is: " + DEEPSEEK_API_KEY)
+# print("The API key is: " + DEEPSEEK_API_KEY)
 if not DEEPSEEK_API_KEY:
     print("Error: DEEPSEEK_API_KEY not found in .env file")
     sys.exit(1)

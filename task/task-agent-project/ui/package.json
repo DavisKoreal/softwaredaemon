@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "task-agent-ui",
   "private": true,
   "version": "0.0.0",
@@ -10,6 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "lucide-react": "^0.544.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ws": "^8.18.0"
