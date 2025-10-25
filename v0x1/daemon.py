@@ -7,6 +7,54 @@ from typing import List
 import os
 import sys
 from dotenv import load_dotenv
+from systemPrompt import sysRole
+# import SQLite for database operations below
+import sqlite3
+
+
+
+
+# We need a database class to store the chat history and terminal execution history and the tasks tree Nary tree
+class Database:
+    def __init__(self, db_name="taskagent.db"):
+        self.conn = sqlite3.connect(db_name)
+        self.create_tables()
+
+    def create_tables(self):
+        with self.conn:
+            self.conn.execute('''CREATE TABLE IF NOT EXISTS chat_history (
+                                    id INTEGER PRIMARY KEY,
+                                    input_task TEXT,
+                                    response TEXT,
+                                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                                )''')
+            self.conn.execute('''CREATE TABLE IF NOT EXISTS terminal_execution_history (
+                                    id INTEGER PRIMARY KEY,
+                                    command TEXT,
+                                    response TEXT,
+                                    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+                                )''')
+            self.conn.execute('''CREATE TABLE IF NOT EXISTS tasks_tree (
+                                    id INTEGER PRIMARY KEY,
+                                    task TEXT,
+                                    parent_id INTEGER,
+                                    level INTEGER,
+                                    FOREIGN KEY(parent_id) REFERENCES tasks_tree(id)
+                                )''')
+
+    def log_chat(self, input_task, response):
+        with self.conn:
+            self.conn.execute('INSERT INTO chat_history (input_task, response) VALUES (?, ?)', (input_task, response))
+
+    def log_terminal_execution(self, command, response):
+        with self.conn:
+            self.conn.execute('INSERT INTO terminal_execution_history (command, response) VALUES (?, ?)', (command, response))
+
+    def log_task(self, task, parent_id, level):
+        with self.conn:
+            self.conn.execute('INSERT INTO tasks_tree (task, parent_id, level) VALUES (?, ?, ?)', (task, parent_id, level))
+
+
 # Load environment variables from .env file
 load_dotenv()
 # Set the OpenAI API key and base URL
@@ -14,6 +62,7 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 print("The API key is: " + DEEPSEEK_API_KEY)
 
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+database = Database()
 
 chatHistory = [{"inputTask": " ", "response": " "}]
 terminalExecutionHistory = [{"command": " ", "response": " "}]
@@ -36,17 +85,7 @@ def getSubTaskList(inputTask="Say Hello"):
     logComputationToFile("Generating sub task list for the task: " + inputTask)
     chatHistoryString = "\n".join(str(item) for item in chatHistory)
 
-    sysRole = """You are a function that takes one task as input. You only have access to a cli terminal with basic linux commands.
-    The definition of an atomic task is a task that can be run by a one-line shell command compatible with both Windows and Linux.
-    If the inputted task can be broken down into modular subtasks, return a JSON with fields "atomic":"false" and "subtasks":"<list of subtasks>".
-    If the inputted task is atomic, return a JSON with fields "atomic":"true" and "command":"<shell command>".
-    Python is installed on the system. Use `{python} <filename>` to run Python scripts, where `{python}` is the Python executable.
-    For file writing, use shell commands like `echo` or `cat` to create files. For example, to create a file named "test.txt" with the content "Hello World", use: echo "Hello World" > test.txt.
-    Always start a task by creating a directory using a shell command (`mkdir <directory_name>` on Linux, `md <directory_name>` on Windows).
-    The following is the chat history: """ + chatHistoryString
-
-    # Replace {python} with the actual Python executable
-    # sysRole = sysRole.format(python=sys.executable)
+    sysRole = sysRole + """ and the following is the chat history """+chatHistoryString
 
     response = client.chat.completions.create(
         model="deepseek-chat",

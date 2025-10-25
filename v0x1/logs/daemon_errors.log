@@ -1,0 +1,6 @@
+2025-10-25 15:35:24,122 - root - ERROR - test_logging:107 - This is an ERROR message - something failed
+2025-10-25 15:35:24,126 - websocket - ERROR - test_logging:112 - WebSocket connection failed: Connection refused
+2025-10-25 15:35:24,567 - task_processing - ERROR - simulate_production_scenario:165 - Failed to execute task: Setup development environment - Command not found
+2025-10-25 15:35:24,571 - root - ERROR - simulate_production_scenario:166 - Task execution failed, attempting recovery
+2025-10-25 15:58:46,547 - root - ERROR - <module>:526 - Error executing command 'Create a directory for the website project': Error executing command: [WinError 2] The system cannot find the file specified
+2025-10-25 16:31:35,317 - root - ERROR - <module>:526 - Error executing command 'Check if Node.js and npm are installed on the system': Error executing command: [WinError 2] The system cannot find the file specified

@@ -1,0 +1,313 @@
+2025-10-25 15:35:24,124 - websocket - INFO - test_logging:110 - WebSocket client connected from 192.168.1.100
+2025-10-25 15:35:24,125 - websocket - DEBUG - test_logging:111 - Broadcasting tree data to 3 clients
+2025-10-25 15:35:24,126 - websocket - ERROR - test_logging:112 - WebSocket connection failed: Connection refused
+2025-10-25 15:35:24,144 - websocket - INFO - simulate_production_scenario:139 - WebSocket server starting on port 8000
+2025-10-25 15:35:24,246 - websocket - INFO - simulate_production_scenario:145 - Client 1 connected from 192.168.1.100
+2025-10-25 15:35:24,247 - websocket - DEBUG - simulate_production_scenario:146 - Sent initial tree data to client 1
+2025-10-25 15:35:24,248 - websocket - INFO - simulate_production_scenario:145 - Client 2 connected from 192.168.1.101
+2025-10-25 15:35:24,249 - websocket - DEBUG - simulate_production_scenario:146 - Sent initial tree data to client 2
+2025-10-25 15:35:24,251 - websocket - INFO - simulate_production_scenario:145 - Client 3 connected from 192.168.1.102
+2025-10-25 15:35:24,252 - websocket - DEBUG - simulate_production_scenario:146 - Sent initial tree data to client 3
+2025-10-25 15:35:24,358 - websocket - DEBUG - simulate_production_scenario:169 - Broadcasting task completion to all clients
+2025-10-25 15:35:24,462 - websocket - DEBUG - simulate_production_scenario:169 - Broadcasting task completion to all clients
+2025-10-25 15:35:24,676 - websocket - DEBUG - simulate_production_scenario:169 - Broadcasting task completion to all clients
+2025-10-25 15:35:24,782 - websocket - DEBUG - simulate_production_scenario:169 - Broadcasting task completion to all clients
+2025-10-25 15:35:24,784 - websocket - INFO - simulate_production_scenario:172 - Client disconnected normally
+2025-10-25 15:35:24,785 - websocket - WARNING - simulate_production_scenario:173 - Client disconnected unexpectedly: Connection reset
+2025-10-25 15:37:54,908 - websocket - INFO - run_in_thread:136 - WebSocket server thread started
+2025-10-25 15:37:54,910 - websocket - INFO - start_server:122 - Starting WebSocket server on ws://localhost:8000
+2025-10-25 15:37:55,424 - websocket - INFO - start_server:125 - WebSocket server successfully started on ws://localhost:8000
+2025-10-25 15:38:06,082 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:38:19,797 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:38:23,607 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:38:34,899 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:38:55,250 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:39:17,265 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:39:34,880 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:39:44,620 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:39:48,501 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:39:57,178 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:02,300 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:12,399 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:17,273 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:22,675 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:32,155 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:36,600 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:41,851 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:52,505 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:40:56,906 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:01,342 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:12,579 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:16,871 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:21,983 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:33,465 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:38,073 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:42,675 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:54,970 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:41:59,776 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:04,485 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:16,799 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:21,402 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:26,662 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:38,925 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:44,066 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:42:49,652 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:01,949 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:06,530 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:11,205 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:21,554 - websocket - INFO - handler:99 - Client connected from ('::1', 54633, 0, 0). Total clients: 1
+2025-10-25 15:43:21,565 - websocket - DEBUG - handler:105 - Sent initial tree data to new client
+2025-10-25 15:43:22,934 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:22,936 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:22,954 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:43:27,333 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:27,334 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:27,350 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:43:32,357 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:32,358 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:32,394 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:43:44,037 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:44,040 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:44,057 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:43:48,633 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:48,636 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:48,652 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:43:53,441 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:43:53,444 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:43:53,460 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:44:05,639 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:44:05,640 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:44:05,654 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:44:10,454 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:44:10,462 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:44:10,497 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:44:15,247 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:44:15,252 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:44:15,269 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:44:26,530 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:44:26,533 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:44:26,550 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:44:31,764 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:44:31,766 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:44:31,782 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:57:30,446 - websocket - INFO - run_in_thread:136 - WebSocket server thread started
+2025-10-25 15:57:30,447 - websocket - INFO - start_server:122 - Starting WebSocket server on ws://localhost:8000
+2025-10-25 15:57:30,520 - websocket - INFO - start_server:125 - WebSocket server successfully started on ws://localhost:8000
+2025-10-25 15:57:35,177 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:57:44,006 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:57:48,535 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:57:59,575 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:02,220 - websocket - INFO - handler:99 - Client connected from ('::1', 56237, 0, 0). Total clients: 1
+2025-10-25 15:58:02,226 - websocket - DEBUG - handler:105 - Sent initial tree data to new client
+2025-10-25 15:58:20,189 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:58:20,190 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:20,206 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:58:40,735 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:40,737 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:58:40,748 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:58:46,278 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:46,281 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:58:46,288 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:58:46,384 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:46,386 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:58:46,391 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 15:58:46,553 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 15:58:46,557 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 15:58:46,566 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:10:54,166 - websocket - INFO - run_in_thread:136 - WebSocket server thread started
+2025-10-25 16:10:54,170 - websocket - INFO - start_server:122 - Starting WebSocket server on ws://localhost:8000
+2025-10-25 16:10:54,359 - websocket - INFO - start_server:125 - WebSocket server successfully started on ws://localhost:8000
+2025-10-25 16:10:56,254 - websocket - INFO - handler:99 - Client connected from ('::1', 49866, 0, 0). Total clients: 1
+2025-10-25 16:11:06,490 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:06,493 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:06,500 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:15,278 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:15,280 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:15,299 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:19,985 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:19,987 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:19,998 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:25,064 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:25,066 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:25,078 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:29,075 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:29,077 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:29,090 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:33,344 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:33,347 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:33,359 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:38,885 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:38,887 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:38,899 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:43,177 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:43,180 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:43,192 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:47,556 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:47,557 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:47,561 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:51,995 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:51,999 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:52,011 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:11:58,853 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:11:58,855 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:11:58,870 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:04,103 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:04,104 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:04,117 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:08,676 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:08,679 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:08,693 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:13,595 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:13,597 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:13,605 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:20,082 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:20,084 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:20,097 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:23,896 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:23,899 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:23,914 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:28,029 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:28,032 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:28,045 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:32,082 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:32,083 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:32,092 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:36,627 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:36,627 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:36,637 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:42,781 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:42,783 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:42,794 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:47,381 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:47,384 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:47,400 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:53,841 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:53,843 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:53,855 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:12:58,448 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:12:58,452 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:12:58,472 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:04,798 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:04,800 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:04,813 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:10,436 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:10,438 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:10,452 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:15,725 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:15,730 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:15,741 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:22,719 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:22,722 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:22,737 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:29,179 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:29,182 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:29,197 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:13:36,500 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:13:36,503 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:13:36,518 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:25:12,145 - websocket - INFO - run_in_thread:136 - WebSocket server thread started
+2025-10-25 16:25:12,148 - websocket - INFO - start_server:122 - Starting WebSocket server on ws://localhost:8000
+2025-10-25 16:25:12,260 - websocket - INFO - start_server:125 - WebSocket server successfully started on ws://localhost:8000
+2025-10-25 16:25:23,827 - websocket - INFO - handler:99 - Client connected from ('::1', 57392, 0, 0). Total clients: 1
+2025-10-25 16:25:30,688 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:25:30,689 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:25:30,690 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:25:41,064 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:25:41,064 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:25:41,077 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:25:45,586 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:25:45,588 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:25:45,600 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:25:50,427 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:25:50,428 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:25:50,431 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:25:54,511 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:25:54,512 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:25:54,522 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:26:00,517 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:26:00,528 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:26:00,532 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:26:08,269 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:26:08,270 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:26:08,281 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:26:17,998 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:26:18,000 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:26:18,009 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:26:28,902 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:26:28,904 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:26:28,919 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:26:52,618 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:26:52,621 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:26:52,633 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:27:10,235 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:27:10,236 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:27:10,250 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:27:16,048 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:27:16,050 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:27:16,066 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:27:23,603 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:27:23,606 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:27:23,619 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:27:30,662 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:27:30,662 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:27:30,678 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:01,902 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:01,904 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:01,919 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:23,749 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:23,751 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:23,766 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:30,902 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:30,906 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:30,925 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:35,750 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:35,750 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:35,765 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:46,633 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:46,633 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:46,647 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:28:57,012 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:28:57,015 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:28:57,029 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:29:10,424 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:29:10,427 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:29:10,445 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:29:20,520 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:29:20,522 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:29:20,537 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:29:34,840 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:29:34,842 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:29:34,855 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:29:41,637 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:29:41,641 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:29:41,657 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:30:26,366 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:30:26,370 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:30:26,387 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:30:32,907 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:30:32,918 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:30:32,972 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:30:38,988 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:30:38,991 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:30:39,000 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:30:45,651 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:30:45,653 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:30:45,668 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:30:51,742 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:30:51,746 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:30:51,762 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:31:06,870 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:31:06,874 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:31:06,894 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:31:21,043 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:31:21,045 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:31:21,057 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:31:34,853 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:31:34,857 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:31:34,864 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:31:35,183 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:31:35,185 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:31:35,193 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
+2025-10-25 16:31:35,319 - websocket - DEBUG - update_and_broadcast:147 - Scheduled tree broadcast
+2025-10-25 16:31:35,328 - websocket - DEBUG - broadcast_tree:81 - Broadcasting to 1 clients
+2025-10-25 16:31:35,340 - websocket - DEBUG - broadcast_tree:86 - Successfully sent message to client
